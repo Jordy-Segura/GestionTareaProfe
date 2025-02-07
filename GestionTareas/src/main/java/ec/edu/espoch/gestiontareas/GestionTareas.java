@@ -4,6 +4,8 @@
 
 package ec.edu.espoch.gestiontareas;
 
+import ec.edu.espoch.gestiontareas.vista.Principal;
+
 /**
  *
  * @author jordy
@@ -11,6 +13,8 @@ package ec.edu.espoch.gestiontareas;
 public class GestionTareas {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Principal objPrincipal=new Principal();
+        objPrincipal.setVisible(true);
+        
     }
 }

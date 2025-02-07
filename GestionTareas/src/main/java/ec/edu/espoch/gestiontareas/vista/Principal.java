@@ -4,18 +4,23 @@
  */
 package ec.edu.espoch.gestiontareas.vista;
 
+import ec.edu.espoch.gestiontareas.tester.TesterVista;
+
 /**
  *
  * @author jordy
  */
 public class Principal extends javax.swing.JFrame {
-
+    private TesterVista tester;
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        this.tester = new TesterVista(this);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,6 +43,11 @@ public class Principal extends javax.swing.JFrame {
         rbtCompleta1 = new javax.swing.JRadioButton();
         btnGuardar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
+        lbdError = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jmenuTarea = new javax.swing.JMenu();
+        menuItemListar = new javax.swing.JMenuItem();
+        jmenuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,6 +58,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel2.setText("Descripción:");
 
+        lbdEstadoTarea.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbdEstadoTarea.setText("Estado de la Tarea:");
 
         btnGrupEstado.add(rbtPendiente);
@@ -61,52 +72,79 @@ public class Principal extends javax.swing.JFrame {
         rbtCompleta1.setText("Completa");
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar");
+
+        lbdError.setText("--------------");
+
+        jmenuTarea.setText("Tarea");
+
+        menuItemListar.setText("Listar Tareas");
+        menuItemListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemListarActionPerformed(evt);
+            }
+        });
+        jmenuTarea.add(menuItemListar);
+
+        jMenuBar1.add(jmenuTarea);
+
+        jmenuSalir.setText("Salir");
+        jMenuBar1.add(jmenuSalir);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 62, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(53, 53, 53)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbdTituloTarea)
+                        .addGap(53, 53, 53)
+                        .addComponent(textTituloTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(57, 57, 57))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
+                        .addGap(160, 160, 160)
+                        .addComponent(lbdEstadoTarea))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
                         .addComponent(lbdTitulo))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
+                        .addGap(115, 115, 115)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(53, 53, 53)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(rbtCompleta1)
+                                .addGap(68, 68, 68)
+                                .addComponent(rbtPendiente))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbdTituloTarea)
-                                .addGap(53, 53, 53)
-                                .addComponent(textTituloTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnGuardar)
+                                .addGap(80, 80, 80)
+                                .addComponent(btnLimpiar))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(lbdEstadoTarea)))
-                .addContainerGap(58, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(rbtCompleta1)
-                        .addGap(68, 68, 68)
-                        .addComponent(rbtPendiente))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGuardar)
-                        .addGap(94, 94, 94)
-                        .addComponent(btnLimpiar)))
-                .addGap(114, 114, 114))
+                        .addGap(199, 199, 199)
+                        .addComponent(lbdError)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(lbdTitulo)
                 .addGap(23, 23, 23)
+                .addComponent(lbdTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbdTituloTarea)
                     .addComponent(textTituloTarea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -122,14 +160,42 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(rbtCompleta1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnLimpiar))
-                .addContainerGap(91, Short.MAX_VALUE))
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnGuardar))
+                .addGap(28, 28, 28)
+                .addComponent(lbdError)
+                .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void menuItemListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemListarActionPerformed
+        // TODO add your handling code here:
+        ListarIU objListarIU = new ListarIU();
+        objListarIU.setVisible(true);
+    }//GEN-LAST:event_menuItemListarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+        this.tester.prueba();
+    }//GEN-LAST:event_btnGuardarActionPerformed
+    
+    public String getTitulo(){
+        return textTituloTarea.getText();
+    }
+    
+    public String getDescripcion(){
+        return textAreaDescripcion.getText();
+    }
+    
+    public boolean getEstado(){
+        return rbtCompleta1.isSelected();        
+    }
+    
+    public void error(String text){
+        lbdError.setText(text);
+    }
     /**
      * @param args the command line arguments
      */
@@ -140,10 +206,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenu jmenuSalir;
+    private javax.swing.JMenu jmenuTarea;
+    private javax.swing.JLabel lbdError;
     private javax.swing.JLabel lbdEstadoTarea;
     private javax.swing.JLabel lbdTitulo;
     private javax.swing.JLabel lbdTituloTarea;
+    private javax.swing.JMenuItem menuItemListar;
     private javax.swing.JRadioButton rbtCompleta1;
     private javax.swing.JRadioButton rbtPendiente;
     private javax.swing.JTextArea textAreaDescripcion;

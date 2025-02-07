@@ -11,7 +11,7 @@ import ec.edu.espoch.gestiontareas.tester.TesterVista;
  * @author jordy
  */
 public class Principal extends javax.swing.JFrame {
-    private TesterVista tester;
+    private Controlador tester;
     /**
      * Creates new form Principal
      */

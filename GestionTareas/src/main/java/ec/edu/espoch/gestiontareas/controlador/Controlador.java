@@ -11,26 +11,31 @@ import ec.edu.espoch.gestiontareas.vista.Principal;
 public class Controlador {
 
     private Principal pricipal;
-    //private TesterControlador testercontrolador;
+    private TesterControlador gestorTarea;
+    //Cuando hagas conexion con el modelo --> quita los /// de la linea 17
+    //private GestorTarea gestorTarea;
 
     public Controlador(Principal pricipal) {
         this.pricipal = pricipal;
-        //this.testercontrolador = new TesterControlador();
+        //Cambia el constructor de la clase modelo
+        this.gestorTarea = new TesterControlador();
     }
 
     public void agregarTarea() {
 
         try {
-            TesterControlador testercontrolador = new TesterControlador();
-            Tarea objTarea = new Tarea();
-            objTarea.setTitulo(this.pricipal.getTitulo());
-            objTarea.setDescripcion(this.pricipal.getDescripcion());
-            objTarea.setEstado(this.pricipal.getEstado());
-
             if (this.pricipal != null) {
-                testercontrolador.prueba(objTarea);
+                Tarea objTarea = new Tarea();
+                objTarea.setTitulo(this.pricipal.getTitulo());
+                objTarea.setDescripcion(this.pricipal.getDescripcion());
+                objTarea.setEstado(this.pricipal.getEstado());
+                gestorTarea.prueba(objTarea);
+
+            } else {
+                pricipal.error("Completa los datos!");
             }
         } catch (Exception e) {
+            pricipal.error("Consulta al ing Pedro");
         }
     }
 }

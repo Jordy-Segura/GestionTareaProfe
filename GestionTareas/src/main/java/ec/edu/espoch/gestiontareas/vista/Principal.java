@@ -4,6 +4,7 @@
  */
 package ec.edu.espoch.gestiontareas.vista;
 
+import ec.edu.espoch.gestiontareas.controlador.Controlador;
 import ec.edu.espoch.gestiontareas.tester.TesterVista;
 
 /**
@@ -17,7 +18,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        this.tester = new TesterVista(this);
+        this.tester = new Controlador(this);
     }
     
     
@@ -178,7 +179,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        this.tester.prueba();
+        this.tester.agregarTarea();
     }//GEN-LAST:event_btnGuardarActionPerformed
     
     public String getTitulo(){

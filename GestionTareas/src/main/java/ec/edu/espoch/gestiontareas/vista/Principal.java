@@ -12,13 +12,15 @@ import ec.edu.espoch.gestiontareas.tester.TesterVista;
  * @author jordy
  */
 public class Principal extends javax.swing.JFrame {
-    private Controlador tester;
+    private Controlador controlador;
+    private ListarIU listarIU;
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
-        this.tester = new Controlador(this);
+        this.listarIU= new ListarIU();
+        this.controlador = new Controlador(this, listarIU);
     }
     
     
@@ -80,6 +82,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         lbdError.setText("--------------");
 
@@ -173,14 +180,19 @@ public class Principal extends javax.swing.JFrame {
 
     private void menuItemListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemListarActionPerformed
         // TODO add your handling code here:
-        ListarIU objListarIU = new ListarIU();
-        objListarIU.setVisible(true);
+        listarIU.setVisible(true);
+        controlador.listarTarea();      
     }//GEN-LAST:event_menuItemListarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        this.tester.agregarTarea();
+        this.controlador.agregarTarea();
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
     
     public String getTitulo(){
         return textTituloTarea.getText();
@@ -196,6 +208,12 @@ public class Principal extends javax.swing.JFrame {
     
     public void error(String text){
         lbdError.setText(text);
+    }
+    
+    public void limpiar(){
+    
+    textTituloTarea.setText("");
+    textAreaDescripcion.setText("");
     }
     /**
      * @param args the command line arguments

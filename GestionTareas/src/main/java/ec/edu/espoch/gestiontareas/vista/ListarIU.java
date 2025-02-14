@@ -4,6 +4,9 @@
  */
 package ec.edu.espoch.gestiontareas.vista;
 
+import ec.edu.espoch.gestiontareas.controlador.Controlador;
+import ec.edu.espoch.gestiontareas.modelo.Tarea;
+
 /**
  *
  * @author jordy
@@ -13,6 +16,7 @@ public class ListarIU extends javax.swing.JFrame {
     /**
      * Creates new form ListarIU
      */
+    private Controlador controlador;
     public ListarIU() {
         initComponents();
     }
@@ -76,8 +80,12 @@ public class ListarIU extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
+     * @param msm
      * @param args the command line arguments
      */
+    public void mostrarDatos(String msm){
+    textAreaListarTareas.setText(msm);
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
